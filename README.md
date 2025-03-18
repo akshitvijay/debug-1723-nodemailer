@@ -1,14 +1,14 @@
 # DEBUG for [nodemailer issue #1723](https://github.com/nodemailer/nodemailer/issues/1723)
 
-I debugged this [issue](https://github.com/nodemailer/nodemailer/issues/1723). Nodemailer uses the `parse` method from Node's `url` module.
+I debugged this [issue](https://github.com/nodemailer/nodemailer/issues/1723). Nodemailer uses the `parse` method from  `url` module.
 
-According to Node.js documentation:
+According to urls's documentation:
 
 > **url.parse()** uses a lenient, non-standard algorithm for parsing URL strings. It is prone to security issues such as hostname spoofing and incorrect handling of usernames and passwords. **Do not use with untrusted input.** CVEs are not issued for `url.parse()` vulnerabilities. **Use the WHATWG URL API instead.**
 
 This lenient parsing is causing the confusion.
 
-The native Node.js WHATWG URL API throws an error with a URL like:
+The native Node.js WHATWG URL API throws an error with a url like:
 
 ```
 smtp://user@mail-serv1.domain.com:Al#$A@1@some.server.com:1025
